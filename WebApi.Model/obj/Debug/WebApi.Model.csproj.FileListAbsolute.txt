@@ -1,0 +1,5 @@
+D:\Project\DemoSolution\WebApi.Model\bin\Debug\WebApi.Model.dll
+D:\Project\DemoSolution\WebApi.Model\bin\Debug\WebApi.Model.pdb
+D:\Project\DemoSolution\WebApi.Model\obj\Debug\WebApi.Model.csprojResolveAssemblyReference.cache
+D:\Project\DemoSolution\WebApi.Model\obj\Debug\WebApi.Model.dll
+D:\Project\DemoSolution\WebApi.Model\obj\Debug\WebApi.Model.pdb
