@@ -151,10 +151,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-cerulean.min.css" />
+    <Content Include="Content\bootstrap-cyborg.min.css" />
+    <Content Include="Content\bootstrap-darkly.min.css" />
+    <Content Include="Content\bootstrap-lumen.min.css" />
+    <Content Include="Content\bootstrap-simplex.min.css" />
+    <Content Include="Content\bootstrap-slate.min.css" />
+    <Content Include="Content\bootstrap-spacelab.min.css" />
+    <Content Include="Content\bootstrap-united.min.css" />
+    <Content Include="Content\charisma-app.css" />
+    <Content Include="Content\images\foto-default.jpg" />
+    <Content Include="Content\images\photo-small.png" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="scripts\bower_components\chosen.jquery.min.js" />
+    <Content Include="scripts\bower_components\fullcalendar.min.js" />
+    <Content Include="scripts\bower_components\jquery.colorbox.js" />
+    <Content Include="scripts\bower_components\moment.js" />
+    <Content Include="scripts\charisma.js" />
+    <Content Include="scripts\jquery.autogrow-textarea.js" />
+    <Content Include="scripts\jquery.cookie.js" />
+    <Content Include="scripts\jquery.dataTables.min.js" />
+    <Content Include="scripts\jquery.history.js" />
+    <Content Include="scripts\jquery.iphone.toggle.js" />
+    <Content Include="scripts\jquery.noty.js" />
+    <Content Include="scripts\jquery.raty.min.js" />
+    <Content Include="scripts\jquery.uploadify-3.1.min.js" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -163,6 +187,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Shared\_Layout.charisma.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -254,7 +279,7 @@
   </Target>
   -->
   <PropertyGroup>
-  	<PostBuildEvent>
+    <PostBuildEvent>
     	if not exist "$(WebProjectOutputDir)\bin\Roslyn" md "$(WebProjectOutputDir)\bin\Roslyn"
       start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"
   	</PostBuildEvent>

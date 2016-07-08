@@ -1,8 +1,78 @@
-﻿
-@{
+﻿@{
+    Layout = "~/Views/Shared/_Layout.charisma.cshtml";
     ViewBag.Title = "Index";
 }
 
-<h2>Index Page</h2>
-<h4>Hello World!</h4>
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">Home</a>
+        </li>
+        <li>
+            <a href="#">PROFILE</a>
+        </li>
+    </ul>
+</div>
+<div class=" row">
+    <div class="box col-md-5">
+        <div class="box-inner">
+            <div class="box-header well">
+                <h2><i class="glyphicon glyphicon-info-sign"></i> Introduction</h2>
+            </div>
+            <div class="box-content row">
+                <div class="col-md-12">
+                    <div style="float:left; margin-right:15px">
+                        <img src="~/Content/images/foto-default.jpg" />
+                    </div>
+                    <div style="float:left">
+                        <strong>Andy A.</strong><br />
+                        38/Male<br />
+                        Houston / Sugar Land<br />
+                        Criterion AM<br />
+                        www.criterionam.com
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box col-md-5">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i> Information</h2>
+                <div class="box-icon">
+
+                </div>
+            </div>
+            <div class="box-content">
+                <ul class="nav nav-tabs" id="myTab">
+                    <li class="active"><a href="#info">Expert</a></li>
+                    <li><a href="#Interests">Interests</a></li>
+                </ul>
+
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane active" id="info">
+                        <strong>Finance</strong><br />
+                        <strong>English</strong><br />
+                        <strong>Anxiety</strong><br />
+                        <strong>Fitness</strong><br />
+                        <strong>Parenting</strong><br />
+                    </div>
+                    <div class="tab-pane" id="Interests">
+                        #Lebronjams<br />
+                        #Cooking<br />
+                        #Dancing
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" row">
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        
+    </div>
+</div>
 

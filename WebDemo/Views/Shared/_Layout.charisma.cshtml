@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>_LayoutNew</title>
+    @Styles.Render("~/bundles/charisma.css")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/bowser_components")
+    @Scripts.Render("~/bundles/charisma")
+</head>
+<body>
+    <!-- topbar starts -->
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-inner">
+            <button type="button" class="navbar-toggle pull-left animated flip">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Profile", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <!-- user dropdown starts -->
+            <div class="btn-group pull-right">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs"> admin</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Profile</a></li>
+                    <li class="divider"></li>
+                    <li><a href="login.html">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    <!-- topbar ends -->
+
+    <div class="ch-container">
+        <div class="row">
+            <!-- left menu starts -->
+            <div class="col-sm-2 col-lg-2">
+                <div class="sidebar-nav">
+                    <div class="nav-canvas">
+                        <div class="nav-sm nav nav-stacked">
+                        </div>
+                        <ul class="nav nav-pills nav-stacked main-menu">
+                            <li class="nav-header">Main</li>
+                            <li>
+                                <a class="ajax-link" href="index.html"><i class="glyphicon glyphicon-home"></i><span> PROFILE </span></a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="ui.html"><i class="glyphicon glyphicon-eye-open"></i><span> LEARN MORE </span></a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="ui.html"><i class="glyphicon glyphicon-eye-open"></i><span> SERCH </span></a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="ui.html"><i class="glyphicon glyphicon-eye-open"></i><span> TRENDING </span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- left menu ends -->
+
+            <div id="content" class="col-lg-10 col-sm-10">
+                <!-- content starts -->
+                @RenderBody()
+                <!-- content ends -->
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
