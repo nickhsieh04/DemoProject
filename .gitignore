@@ -22,3 +22,10 @@ Ankh.NoLoad
 *.rar
 *.tar
 *.zip
+/WebApi.Model/bin
+/WebApi.Model/obj
+/WebApi/bin
+/WebApi/obj
+/WebA/obj
+/WebA/bin
+/WebDemo/obj
