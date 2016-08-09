@@ -1,13 +1,14 @@
 ﻿function InitialiseFacebook(appId) {
-    window.fbAsyncIntit = function () {
+    window.fbAsyncInit = function () {
         FB.init({
             appId: appId,
             status: true,
             cookie: true,
-            xfbml: true
+            xfbml: true,
+            version: 'v2.5'
         });
 
-        FB.event.subscribe('auth.login', function (response) {
+        FB.Event.subscribe('auth.login', function (response) {
             var credentials = { uid: response.authResponse.userID, accessToken: response.authResponse.accessToken };
             SubmitLogin(credentials);
         });
@@ -44,7 +45,7 @@
         js = d.createElement('script');
         js.id = id;
         js.async = true;
-        js.src = "//connect.facebook.net/en_US/all.js";
+        js.src = "//connect.facebook.net/zh_TW/all.js";
         ref.parentNode.insertBefore(js, ref);
     }(document));
 }
