@@ -20,7 +20,7 @@ namespace WebDemo.Contorllers
                 AccessToken = Session["accessToken"].ToString()
             };
             client.Version = "v2.7";
-            dynamic fbresult = client.Get("me?fields=id,first_name,last_name,gender,locale,link,timezone,location,picture,age_range,name");
+            dynamic fbresult = client.Get("me?fields=id,first_name,last_name,gender,locale,link,timezone,location,picture,age_range,name,email");
             FacebookUserModel facebookUser = Newtonsoft.Json.JsonConvert.DeserializeObject<FacebookUserModel>(fbresult.ToString());
 
             return View(facebookUser);
