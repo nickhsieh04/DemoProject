@@ -36,7 +36,8 @@ namespace WebDemo.Contorllers
         public ActionResult Facebook()
         {
             var fb = new FacebookClient();
-            
+            UrlHelper helpr = new UrlHelper();
+            //string uuu = helpr.ToPublicUrl(RedirectUri);
             var loginUrl = fb.GetLoginUrl(new
             {
                 client_id = System.Configuration.ConfigurationManager.AppSettings["FacebookAppId"],
@@ -122,6 +123,29 @@ namespace WebDemo.Contorllers
             FormsAuthentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Login");
+        }
+    }
+
+    public static class ExtensionMethod
+    {
+        public static string ToPublicUrl(this UrlHelper urlHelper, Uri relativeUri)
+        {
+            var httpContext = urlHelper.RequestContext.HttpContext;
+
+            var uriBuilder = new UriBuilder
+            {
+                Host = httpContext.Request.Url.Host,
+                Path = "/",
+                Port = 80,
+                Scheme = "http",
+            };
+
+            if (httpContext.Request.IsLocal)
+            {
+                uriBuilder.Port = httpContext.Request.Url.Port;
+            }
+
+            return new Uri(uriBuilder.Uri, relativeUri).AbsoluteUri;
         }
     }
 }
