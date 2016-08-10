@@ -36,11 +36,13 @@ namespace WebDemo.Contorllers
         public ActionResult Facebook()
         {
             var fb = new FacebookClient();
+            
             var loginUrl = fb.GetLoginUrl(new
             {
                 client_id = System.Configuration.ConfigurationManager.AppSettings["FacebookAppId"],
                 client_secret = System.Configuration.ConfigurationManager.AppSettings["FacebookSecret"],
-                redirect_uri = RedirectUri.AbsoluteUri,
+                //redirect_uri = RedirectUri.AbsoluteUri,
+                redirect_uri = toRedirectUri("FacebookCallback").AbsoluteUri,
                 response_type = "code",
                 scope = "email", //Add other permissions as needed
                 display = "popup"
@@ -48,6 +50,27 @@ namespace WebDemo.Contorllers
 
             return Redirect(loginUrl.AbsoluteUri);
         }
+
+        private Uri toRedirectUri(string action)
+        {
+            var uriBuilder = new UriBuilder(Request.Url.AbsoluteUri);
+            uriBuilder.Query = null;
+            uriBuilder.Fragment = null;
+            uriBuilder.Path = Url.Action(action);
+            uriBuilder.Scheme = System.Configuration.ConfigurationManager.AppSettings["Protocol"] ?? "http";
+            string port = System.Configuration.ConfigurationManager.AppSettings["Port"] ?? "80";
+            try
+            {
+                uriBuilder.Port = Int32.Parse(port);
+            }
+            catch (Exception ex)
+            {
+                //this.Logging(WebSite.Enums.LogLevels.error, "從web config取得Port轉型失敗", ex.Message);
+                uriBuilder.Port = 80;
+            }
+            return uriBuilder.Uri;
+        }
+
 
         private Uri RedirectUri
         {
