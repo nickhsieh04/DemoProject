@@ -36,6 +36,19 @@
                     <div style="float:left">
                         <strong>@Model.name</strong><br />
                         @Model.gender<br />
+                        @if (Model.age_range.min.HasValue && Model.age_range.max.HasValue)
+                        {
+                            @Model.age_range.min.Value @:~ @Model.age_range.max.Value
+                        }
+                        else if (Model.age_range.min.HasValue)
+                        {
+                            @Model.age_range.min.Value@:+
+                        }
+                        else if (Model.age_range.max.HasValue)
+                        {
+                            @Model.age_range.max.Value@:-
+                        }
+                        <br />
                         @Model.locale<br />
                         @Model.link
                     </div>

@@ -35,10 +35,17 @@ namespace WebDemo.Models
         public int timezone { get; set; }
         public FacebookLocation location { get; set; }
         public Picture picture { get; set; }
+        public age age_range { get; set; }
     }
     public class FacebookLocation
     {
         public string id { get; set; }
         public string name { get; set; }
+    }
+
+    public class age
+    {
+        public Int32? min { get; set; }
+        public Int32? max { get; set; }
     }
 }
