@@ -16,7 +16,7 @@ namespace WebDemo
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { action = "Login", id = UrlParameter.Optional, controller = "Home" }
+                defaults: new { action = "Index", id = UrlParameter.Optional, controller = "Home" }
             );
         }
     }

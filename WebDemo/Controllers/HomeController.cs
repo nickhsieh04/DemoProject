@@ -39,21 +39,28 @@ namespace WebDemo.Contorllers
         [AllowAnonymous]
         public ActionResult Facebook()
         {
-            var fb = new FacebookClient();
-            UrlHelper helpr = new UrlHelper();
-            //string uuu = helpr.ToPublicUrl(RedirectUri);
-            var loginUrl = fb.GetLoginUrl(new
+            if (User.Identity.IsAuthenticated)
             {
-                client_id = System.Configuration.ConfigurationManager.AppSettings["FacebookAppId"],
-                client_secret = System.Configuration.ConfigurationManager.AppSettings["FacebookSecret"],
-                //redirect_uri = RedirectUri.AbsoluteUri,
-                redirect_uri = toRedirectUri("FacebookCallback").AbsoluteUri,
-                response_type = "code",
-                scope = "email,user_friends", //Add other permissions as needed
-                display = "popup"
-            });
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                var fb = new FacebookClient();
+                UrlHelper helpr = new UrlHelper();
+                //string uuu = helpr.ToPublicUrl(RedirectUri);
+                var loginUrl = fb.GetLoginUrl(new
+                {
+                    client_id = System.Configuration.ConfigurationManager.AppSettings["FacebookAppId"],
+                    client_secret = System.Configuration.ConfigurationManager.AppSettings["FacebookSecret"],
+                    //redirect_uri = RedirectUri.AbsoluteUri,
+                    redirect_uri = toRedirectUri("FacebookCallback").AbsoluteUri,
+                    response_type = "code",
+                    scope = "email,user_friends", //Add other permissions as needed
+                    display = "popup"
+                });
 
-            return Redirect(loginUrl.AbsoluteUri);
+                return Redirect(loginUrl.AbsoluteUri);
+            }
         }
 
         private Uri toRedirectUri(string action)
