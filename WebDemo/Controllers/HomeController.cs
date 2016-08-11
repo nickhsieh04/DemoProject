@@ -1,6 +1,7 @@
 ﻿using Facebook;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,11 +18,14 @@ namespace WebDemo.Contorllers
         {
             var client = new FacebookClient()
             {
-                AccessToken = Session["accessToken"].ToString()
+                AccessToken = Session["accessToken"].ToString(),
+                Version = "v2.7"
             };
-            client.Version = "v2.7";
             dynamic fbresult = client.Get("me?fields=id,first_name,last_name,gender,locale,link,timezone,location,picture,age_range,name,email");
             FacebookUserModel facebookUser = Newtonsoft.Json.JsonConvert.DeserializeObject<FacebookUserModel>(fbresult.ToString());
+
+
+            //dynamic friendListData = client.Get("/me/friends");
 
             return View(facebookUser);
         }
@@ -45,7 +49,7 @@ namespace WebDemo.Contorllers
                 //redirect_uri = RedirectUri.AbsoluteUri,
                 redirect_uri = toRedirectUri("FacebookCallback").AbsoluteUri,
                 response_type = "code",
-                scope = "email", //Add other permissions as needed
+                scope = "email,user_friends", //Add other permissions as needed
                 display = "popup"
             });
 
@@ -88,8 +92,11 @@ namespace WebDemo.Contorllers
         [AllowAnonymous]
         public ActionResult FacebookCallback(string code)
         {
-            var fb = new FacebookClient();
+            if (code == null)
+                return RedirectToAction("Login", "Home");
 
+
+            var fb = new FacebookClient();
             dynamic result = fb.Post("oauth/access_token", new
             {
                 client_id = System.Configuration.ConfigurationManager.AppSettings["FacebookAppId"],
