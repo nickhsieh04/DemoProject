@@ -80,6 +80,7 @@
                         <strong>Anxiety</strong><br />
                         <strong>Fitness</strong><br />
                         <strong>Parenting</strong><br />
+                        <div id="loggedUsers"></div>
                     </div>
                     <div class="tab-pane" id="Interests">
                         #Lebronjams<br />
@@ -98,4 +99,18 @@
         
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        loginDisplay();
+        setInterval(loginDisplay, 3000);
+    });
+
+    function loginDisplay() {
+        $.post("/Home/LoginUser", null, function (data) {
+            console.log(data);
+            $("#loggedUsers").html(data);
+        });
+    }
+</script>
 

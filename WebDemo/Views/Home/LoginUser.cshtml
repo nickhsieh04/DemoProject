@@ -1,0 +1,20 @@
+﻿@if (HttpRuntime.Cache["LoggedInUsers"] != null)
+{
+    var loggedOnUsers = HttpRuntime.Cache["LoggedInUsers"] as Dictionary<string, DateTime>;
+    if (loggedOnUsers != null && loggedOnUsers.Count > 0)
+    {
+        <div>
+            <span> Online Users: </span>
+            <ul>
+                @foreach (var user in loggedOnUsers)
+                {
+                    <li>
+                        <div class="r_row">
+                            <div class="r_name">@Html.Encode(user.Key)</div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+}

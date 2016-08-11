@@ -122,14 +122,47 @@ namespace WebDemo.Contorllers
             // Set the auth cookie
             FormsAuthentication.SetAuthCookie(email, false);
 
+            if (HttpRuntime.Cache["LoggedInUsers"] != null) //if the list exists, add this user to it
+            {
+                //get the list of logged in users from the cache
+                Dictionary<string, DateTime> loggedInUsers = (Dictionary<string, DateTime>)HttpRuntime.Cache["LoggedInUsers"];
+                //add this user to the list
+                loggedInUsers.Add(email, DateTime.Now);
+                //add the list back into the cache
+                HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+            }
+            else //the list does not exist so create it
+            {
+                var loggedInUsers = new Dictionary<string, DateTime>();
+                loggedInUsers.Add(email, DateTime.Now);
+                HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+            }
+
+
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Logout()
         {
+            string username = User.Identity.Name;
+            if (HttpRuntime.Cache["LoggedInUsers"] != null)
+            {
+                Dictionary<string, DateTime> loggedInUsers = (Dictionary<string, DateTime>)HttpRuntime.Cache["LoggedInUsers"];
+                if (loggedInUsers.ContainsKey(username))
+                {
+                    loggedInUsers.Remove(username);
+                    HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+                }
+            }
+
             FormsAuthentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Login");
+        }
+
+        public ActionResult LoginUser()
+        {
+            return PartialView();
         }
     }
 
