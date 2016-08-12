@@ -28,7 +28,7 @@ namespace WebDemo.Controllers
         [HttpGet]
         public ActionResult UserDetails()
         {
-            string token = "EAACEdEose0cBABTMrZBFnKwvwTZAZC3DhsdTeNYON0vQmLwfft5ki1bnZBinANa9gRXUbZAD8OXOF5hIfelxQMi6pwVvrOY4Dxrh1a5QzPgUrqfYSRHPHab8ZALb5y7zjBePVpqZABIzYMv7SN5ZBbyvIS8KDpxXyv3SPpujPooqoAZDZD";
+            string token = Session["accessToken"].ToString();
 
             var client = new FacebookClient()
             {

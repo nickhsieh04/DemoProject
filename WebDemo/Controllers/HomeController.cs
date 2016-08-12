@@ -13,7 +13,7 @@ namespace WebDemo.Contorllers
 {
     public class HomeController : Controller
     {
-        [CheckSessionTimeOut]
+        //[CheckSessionTimeOut]
         public ActionResult Index()
         {
             var client = new FacebookClient()
@@ -46,7 +46,7 @@ namespace WebDemo.Contorllers
             else
             {
                 var fb = new FacebookClient();
-                UrlHelper helpr = new UrlHelper();
+                //UrlHelper helpr = new UrlHelper();
                 //string uuu = helpr.ToPublicUrl(RedirectUri);
                 var loginUrl = fb.GetLoginUrl(new
                 {
@@ -125,6 +125,7 @@ namespace WebDemo.Contorllers
 
             dynamic me = fb.Get("me?fields=first_name,last_name,id,email");
             string email = me.email;
+            Session["UserAccount"] = email;
 
             // Set the auth cookie
             FormsAuthentication.SetAuthCookie(email, false);
@@ -162,8 +163,11 @@ namespace WebDemo.Contorllers
                 }
             }
 
-            FormsAuthentication.SignOut();
+            Session.RemoveAll();
+            Session.Clear();
             Session.Abandon();
+
+            FormsAuthentication.SignOut();            
             return RedirectToAction("Login");
         }
 
