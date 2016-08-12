@@ -25,27 +25,27 @@ namespace WebDemo
 
         protected void Application_EndRequest()
         {
-            var loggedInUsers = (Dictionary<string, DateTime>)HttpRuntime.Cache["LoggedInUsers"];
-            if (User.Identity.IsAuthenticated)
-            {
-                var userName = User.Identity.Name;
-                if (loggedInUsers != null)
-                {
-                    loggedInUsers[userName] = DateTime.Now;
-                    HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
-                }
-            }
-            if (loggedInUsers != null)
-            {
-                foreach (var item in loggedInUsers.ToList())
-                {
-                    if (item.Value < DateTime.Now.AddMinutes(-5))
-                    {
-                        loggedInUsers.Remove(item.Key);
-                    }
-                }
-                HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
-            }
+            //var loggedInUsers = (Dictionary<string, DateTime>)HttpRuntime.Cache["LoggedInUsers"];
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    var userName = User.Identity.Name;
+            //    if (loggedInUsers != null)
+            //    {
+            //        loggedInUsers[userName] = DateTime.Now;
+            //        HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+            //    }
+            //}
+            //if (loggedInUsers != null)
+            //{
+            //    foreach (var item in loggedInUsers.ToList())
+            //    {
+            //        if (item.Value < DateTime.Now.AddMinutes(-5))
+            //        {
+            //            loggedInUsers.Remove(item.Key);
+            //        }
+            //    }
+            //    HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+            //}
         }
     }
 }
